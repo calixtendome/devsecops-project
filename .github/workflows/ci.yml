@@ -1,1 +1,26 @@
+name: DevSecOps Pipeline
 
+on:
+  push:
+
+jobs:
+  security:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Récupérer le code
+        uses: actions/checkout@v4
+
+      - name: Build image Docker
+        run: docker build -t flask-app .
+
+      - name: Scan Trivy du projet
+        uses: aquasecurity/trivy-action@0.24.0
+        with:
+          scan-type: fs
+          scan-ref: .
+
+      - name: Scan Trivy de l'image Docker
+        uses: aquasecurity/trivy-action@0.24.0
+        with:
+          image-ref: flask-app
