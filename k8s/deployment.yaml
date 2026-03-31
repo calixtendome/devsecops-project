@@ -16,4 +16,4 @@ spec:
         - name: flask
           image: flask-app:latest
           securityContext:
-            runAsNonRoot: false
+            runAsNonRoot: true
