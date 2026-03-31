@@ -15,12 +15,12 @@ jobs:
         run: docker build -t flask-app .
 
       - name: Scan Trivy du projet
-        uses: aquasecurity/trivy-action@0.24.0
+        uses: aquasecurity/trivy-action@master
         with:
           scan-type: fs
           scan-ref: .
 
       - name: Scan Trivy de l'image Docker
-        uses: aquasecurity/trivy-action@0.24.0
+        uses: aquasecurity/trivy-action@master
         with:
           image-ref: flask-app
